@@ -53,7 +53,7 @@ public class Tabulator {
 			}
 			else {
 				x = (7.5 * allnotes[i].measureNum());
-				plotNotes(plotting, x, y);
+				plotNotes(plotting, y);
 				y = y - 10;
 				plotting.clear();
 				plotting.add(allnotes[i]);
@@ -105,7 +105,7 @@ public class Tabulator {
 			for (int i = 0; i < n.notes().length; i++) {
 				String name = "img/note-" + n.notes()[i].fret + ".png";
 
-				double x = (7.5 * allnotes[allnotes.length - 1].measureNum());
+				double x = (7.5 * n.measureNum());
 
 				StdDraw.picture(x + n.orderNum() + 1, y - n.notes()[i].string, name, 1, 1);
 
