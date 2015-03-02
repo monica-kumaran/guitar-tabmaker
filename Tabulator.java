@@ -13,8 +13,6 @@ public class Tabulator {
 		Tabulator t = new Tabulator();
 		t.allnotes = FileReader.getNotes("notes.txt");
 		t.drawBoard();
-
-
 	}
 
 	public void drawBoard(){
@@ -43,28 +41,31 @@ public class Tabulator {
 		//plotNotes takes care of x
 		
 		int y = 80;
-		double x;
 		ArrayList<NotesAtATime> plotting = new ArrayList<NotesAtATime>();
-		System.out.println("All Notes length: " + allnotes.length);
+//		System.out.println("All Notes length: " + allnotes.length);
 		for (int i = 0; i < allnotes.length; i++) {
-			if (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
-				plotting.add(allnotes[i]);
+//			if (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
+			if (allnotes[i].measureNum() != 0 && allnotes[i].orderNum() == 0 && allnotes[i].measureNum()%4 == 0) {
+/*				
+			}
+
+			if (allnotes[i].measureNum() == 0 || (allnotes[i].orderNum != 0) {
 				System.out.println("inside if statement, measureNum = " + allnotes[i].measureNum());
 			}
 			else {
-				x = (7.5 * allnotes[i].measureNum());
-				plotNotes(plotting, y);
+*/				plotNotes(plotting, y);
 				y = y - 10;
 				plotting.clear();
-				plotting.add(allnotes[i]);
-				System.out.println("Look, ma, I'm plotting! Y: " + y);
+//				plotting.add(allnotes[i]);
+//				System.out.println("measureNum is "+allnotes[i].measureNum()+ " so I plotted. Y: " + y);
 			}
+			plotting.add(allnotes[i]);
 		}
 		if (plotting.size() != 0) {
-			System.out.println("y is "+ y);
+//			System.out.println("y is "+ y);
 			plotNotes(plotting, y);
 			plotting.clear();
-			System.out.println("Look, ma, I'm still plotting!");
+//			System.out.println("Look, ma, I'm still plotting!");
 		}
 	}
 
@@ -104,14 +105,14 @@ public class Tabulator {
 			for (int i = 0; i < n.notes().length; i++) {
 				String name = "img/note-" + n.notes()[i].fret + ".png";
 
-				double x = (7.5 * n.measureNum());
+				double x = (7.5 * (n.measureNum()%4));
 
 				StdDraw.picture(x + n.orderNum() + (7.5 / 4), y - n.notes()[i].string, name, 0.5, 1.5);
 
-				System.out.print("y is "+ y +", (x, y) is ");
+/*				System.out.print("y is "+ y +", (x, y) is ");
 				System.out.print(x + n.orderNum() + 1 + ", ");
 				System.out.println(y - n.notes()[i].string);
-			}
+*/			}
 //			System.out.println("Oho " + j);
 		}
 		//take y as top line and then subtract - 1 based on which string	

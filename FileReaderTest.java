@@ -20,7 +20,10 @@ public class FileReaderTest {
 		NotesAtATime b_2_0 = test[8];
 		assertEquals(2, b_2_0.measureNum());
 
-		assertEquals(16, test.length);
+		assertEquals(32, test.length);
+
+		NotesAtATime c_7_2 = test[30];
+		assertEquals(7, c_7_2.measureNum());
 	}
 
 
