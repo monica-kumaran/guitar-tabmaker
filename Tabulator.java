@@ -2,15 +2,15 @@
 * @author Monica and Harry
 */
 
-import java.util;
+import java.util.*;
 
 public class Tabulator {
 	public int bar_num = 8;
 	public int line = bar_num/4;
-	public NotesAtATime[] allnotes;
+	public static NotesAtATime[] allnotes;
 
 	public static void main(String[] args){
-		allnotes = FileReader.getNotes("some file");
+		allnotes = FileReader.getNotes("notes.txt");
 		drawBoard();
 
 
@@ -43,7 +43,7 @@ public class Tabulator {
 		
 		int i = 0;
 		int y = 80;
-		ArrayList<NotesAtATime> plotting = new ArrayList<NotesAtATime>;
+		ArrayList<NotesAtATime> plotting = new ArrayList<NotesAtATime>();
 		
 		while (i < allnotes.length) {
 			//groups it per measure
@@ -51,7 +51,7 @@ public class Tabulator {
 
 			//adds all notes w/ measure 0 or measure which is not mult. of 4
 			while (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
-				plotting.append(allnotes[i]);
+				plotting.add(allnotes[i]);
 				i++;
 			}
 			
@@ -63,11 +63,11 @@ public class Tabulator {
 			
 			//adds the next measure of notes, b/c otherwise not added by first loop
 			while (allnotes[i].measureNum()%4 == 0) {
-				plotting.append(allnotes[i])
+				plotting.add(allnotes[i]);
 				i++;
 			}
 		}	
-				
+
 	}
 
 	public static void drawLine(int y0){
@@ -92,12 +92,12 @@ public class Tabulator {
 
 	//plots all notes in one line
 	//notesatatime is basically one note!
-	public void plotNotes(NotesAtATime[] noteline, int x, int y) {
-		for (int j = 0; j < noteline.length; j++) {
-			NotesAtATime n = noteline[j];
+	public static void plotNotes(ArrayList <NotesAtATime> noteline, int x, int y) {
+		for (int j = 0; j < noteline.size(); j++) {
+			NotesAtATime n = noteline.get(j);
 			for (int i = 0; i < n.notes().length; i++) {
 				String name = "img/note-" + n.notes()[i].fret + ".png";
-				StdDrawPlus.picture(x + n.orderNum() + 1, y - n.notes()[i].string, name, 1, 1);
+				StdDraw.picture(x + n.orderNum() + 1, y - n.notes()[i].string, name, 1, 1);
 			}
 		}
 		//take y as top line and then subtract - 1 based on which string	
