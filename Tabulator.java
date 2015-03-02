@@ -1,5 +1,5 @@
 /**
-* @author Monica and Harry
+* @author Monica, Sam, Harry, Paige
 */
 
 import java.util.*;
@@ -19,6 +19,11 @@ public class Tabulator {
 		StdDraw.setCanvasSize(800,900);
 		StdDraw.setXscale(0,30);
 		StdDraw.setYscale(0,90);
+		/* uncomment for watermark version */
+		// StdDraw.picture(15, 50, "img/bg2.png", 30, 90);
+		StdDraw.picture(20, 60, "img/bg3.png", 20, 60);
+		StdDraw.picture(10, 60, "img/bg3.png", 20, 60);
+		StdDraw.picture(15, 60, "img/bg3.png", 20, 60);
 	
 		drawLine(80);
 		drawLine(70);
