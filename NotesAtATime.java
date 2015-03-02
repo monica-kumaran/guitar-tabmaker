@@ -1,6 +1,6 @@
 //package staffToTab;
 
-public class NotesAtATime {
+public class NotesAtATime implements Comparable<NotesAtATime>{
 	private Note[] notes;
 	private int measureNum;
 	private int orderNum;
@@ -21,6 +21,13 @@ public class NotesAtATime {
 
 	public int orderNum() {
 		return orderNum;
+	}
+
+	public int compareTo(NotesAtATime other) {
+		if (other.measureNum() == measureNum) {
+			return orderNum - other.orderNum();
+		}
+		return measureNum - other.measureNum();
 	}
 
 }

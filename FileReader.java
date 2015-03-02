@@ -3,6 +3,7 @@
 * @author Sam 
 */
 import java.util.ArrayList;
+import java.util.Collections;
 
 //reads text files and converts them into an array of NotesAtATime objects.
 public class FileReader {
@@ -49,6 +50,7 @@ public class FileReader {
 		verticals.add(new NotesAtATime(notes.toArray(new Note[notes.size()]),
 					 					currentPiece_mN, currentPiece_oN));
 
+		Collections.sort(verticals);
 
 //		measure_pieces = verticals.toArray();
 		return verticals.toArray(new NotesAtATime[verticals.size()]);
