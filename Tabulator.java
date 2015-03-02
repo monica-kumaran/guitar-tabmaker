@@ -57,11 +57,11 @@ public class Tabulator {
 				y = y - 10;
 				plotting.clear();
 				plotting.add(allnotes[i]);
-				System.out.println("Look, ma, I'm plotting!");
+				System.out.println("Look, ma, I'm plotting! Y: " + y);
 			}
 		}
 		if (plotting.size() != 0) {
-			System.out.print("y is "+ y);
+			System.out.println("y is "+ y);
 			plotNotes(plotting, y);
 			plotting.clear();
 			System.out.println("Look, ma, I'm still plotting!");
@@ -98,7 +98,6 @@ public class Tabulator {
 		StdDraw.setXscale(0,30);
 		StdDraw.setYscale(0,90);
 */
-		System.out.println("Haiiiii");
 //		StdDraw.setPenColor(StdDraw.WHITE);
 		for (int j = 0; j < noteline.size(); j++) {
 			NotesAtATime n = noteline.get(j);
@@ -107,9 +106,9 @@ public class Tabulator {
 
 				double x = (7.5 * n.measureNum());
 
-				StdDraw.picture(x + n.orderNum() + 1, y - n.notes()[i].string, name, 1, 1);
+				StdDraw.picture(x + n.orderNum() + (7.5 / 4), y - n.notes()[i].string, name, 0.5, 1.5);
 
-				System.out.print("y is "+ y);
+				System.out.print("y is "+ y +", (x, y) is ");
 				System.out.print(x + n.orderNum() + 1 + ", ");
 				System.out.println(y - n.notes()[i].string);
 			}
