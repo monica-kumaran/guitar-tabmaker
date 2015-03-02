@@ -7,16 +7,17 @@ import java.util.*;
 public class Tabulator {
 	public int bar_num = 8;
 	public int line = bar_num/4;
-	public static NotesAtATime[] allnotes;
+	public NotesAtATime[] allnotes;
 
 	public static void main(String[] args){
-		allnotes = FileReader.getNotes("notes.txt");
-		drawBoard();
+		Tabulator t = new Tabulator();
+		t.allnotes = FileReader.getNotes("notes.txt");
+		t.drawBoard();
 
 
 	}
 
-	public static void drawBoard(){
+	public void drawBoard(){
 		StdDraw.setCanvasSize(800,900);
 		StdDraw.setXscale(0,30);
 		StdDraw.setYscale(0,90);
@@ -41,33 +42,30 @@ public class Tabulator {
 		//switch y (drawLine) every four notesatatime
 		//plotNotes takes care of x
 		
-		int i = 0;
 		int y = 80;
+		double x;
 		ArrayList<NotesAtATime> plotting = new ArrayList<NotesAtATime>();
-		
-		while (i < allnotes.length) {
-			//groups it per measure
-			//adds notes of next four measures
-
-			//adds all notes w/ measure 0 or measure which is not mult. of 4
-			while (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
+		System.out.println("All Notes length: " + allnotes.length);
+		for (int i = 0; i < allnotes.length; i++) {
+			if (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
 				plotting.add(allnotes[i]);
-				i++;
+				System.out.println("inside if statement, measureNum = " + allnotes[i].measureNum());
 			}
-			
-			//plots notes on line, moves to next line, then increments to next note
-			plotNotes(plotting, y, 20);
-			y = y - 10;
+			else {
+				x = (7.5 * allnotes[i].measureNum());
+				plotNotes(plotting, x, y);
+				y = y - 10;
+				plotting.clear();
+				plotting.add(allnotes[i]);
+				System.out.println("Look, ma, I'm plotting!");
+			}
+		}
+		if (plotting.size() != 0) {
+			System.out.print("y is "+ y);
+			plotNotes(plotting, y);
 			plotting.clear();
-			i++;
-			
-			//adds the next measure of notes, b/c otherwise not added by first loop
-			while (allnotes[i].measureNum()%4 == 0) {
-				plotting.add(allnotes[i]);
-				i++;
-			}
-		}	
-
+			System.out.println("Look, ma, I'm still plotting!");
+		}
 	}
 
 	public static void drawLine(int y0){
@@ -92,13 +90,30 @@ public class Tabulator {
 
 	//plots all notes in one line
 	//notesatatime is basically one note!
-	public static void plotNotes(ArrayList <NotesAtATime> noteline, int x, int y) {
+
+	//x is measure number.
+	//y is 80 or 70 or cetera depending on line number. 
+	public void plotNotes(ArrayList <NotesAtATime> noteline, int y) {
+/*		StdDraw.setCanvasSize(800,900);
+		StdDraw.setXscale(0,30);
+		StdDraw.setYscale(0,90);
+*/
+		System.out.println("Haiiiii");
+//		StdDraw.setPenColor(StdDraw.WHITE);
 		for (int j = 0; j < noteline.size(); j++) {
 			NotesAtATime n = noteline.get(j);
 			for (int i = 0; i < n.notes().length; i++) {
 				String name = "img/note-" + n.notes()[i].fret + ".png";
+
+				double x = (7.5 * allnotes[allnotes.length - 1].measureNum());
+
 				StdDraw.picture(x + n.orderNum() + 1, y - n.notes()[i].string, name, 1, 1);
+
+				System.out.print("y is "+ y);
+				System.out.print(x + n.orderNum() + 1 + ", ");
+				System.out.println(y - n.notes()[i].string);
 			}
+//			System.out.println("Oho " + j);
 		}
 		//take y as top line and then subtract - 1 based on which string	
 	}
