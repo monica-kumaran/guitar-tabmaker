@@ -1,4 +1,7 @@
-//import staffToTab.Note;
+//package staffToTab;
+/**
+* @author Paige
+*/
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.List;

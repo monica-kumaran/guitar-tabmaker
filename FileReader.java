@@ -1,6 +1,6 @@
 //package staffToTab;
-/*import staffToTab.Note;
-import staffToTab.NotesAtATime;
+/**
+* @author Sam 
 */
 import java.util.ArrayList;
 

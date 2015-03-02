@@ -1,7 +1,7 @@
-//import staffToTab.Note;
-//import staffToTab.FileReader;
-
-//import staffToTab.NotesAtATime;
+//package staffToTab;
+/**
+* @author Sam 
+*/
 
 import org.junit.Test;
 import static org.junit.Assert.*;
