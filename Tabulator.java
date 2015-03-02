@@ -2,6 +2,8 @@
 * @author Monica and Harry
 */
 
+import java.util;
+
 public class Tabulator {
 	public int bar_num = 8;
 	public int line = bar_num/4;
@@ -18,17 +20,6 @@ public class Tabulator {
 		StdDraw.setCanvasSize(800,900);
 		StdDraw.setXscale(0,30);
 		StdDraw.setYscale(0,90);
-
-		//take every four notesatatime and then plot into line
-		//switch y (drawLine) every four notesatatime
-		//plotNotes takes care of x
-		int i = 0;
-		while (allnotes[i].measureNum() < *multiple of 4*) {
-			//give group of four measures, y of top line, and beginning x (always 20)
-			NotesAtATime[] plotting = {allnotes[i], allnotes[i+1], allnotes[], allnotes[]};
-			plotNotes( , 80, 20);
-			i = i + 1;
-		}
 	
 		drawLine(80);
 		drawLine(70);
@@ -45,6 +36,38 @@ public class Tabulator {
 		drawBar(40);
 		drawBar(30);
 		drawBar(20);
+
+		//take every four measures and then plot into line
+		//switch y (drawLine) every four notesatatime
+		//plotNotes takes care of x
+		
+		int i = 0;
+		int y = 80;
+		ArrayList<NotesAtATime> plotting = new ArrayList<NotesAtATime>;
+		
+		while (i < allnotes.length) {
+			//groups it per measure
+			//adds notes of next four measures
+
+			//adds all notes w/ measure 0 or measure which is not mult. of 4
+			while (allnotes[i].measureNum() == 0 || allnotes[i].measureNum()%4 != 0) {
+				plotting.append(allnotes[i]);
+				i++;
+			}
+			
+			//plots notes on line, moves to next line, then increments to next note
+			plotNotes(plotting, y, 20);
+			y = y - 10;
+			plotting.clear();
+			i++;
+			
+			//adds the next measure of notes, b/c otherwise not added by first loop
+			while (allnotes[i].measureNum()%4 == 0) {
+				plotting.append(allnotes[i])
+				i++;
+			}
+		}	
+				
 	}
 
 	public static void drawLine(int y0){
