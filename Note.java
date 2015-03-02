@@ -1,4 +1,7 @@
 //package staffToTab;
+/**
+* @author Sam and Paige
+*/
 
 /* Each Note holds a number, string number, and fret number */
 public class Note {
